@@ -5,196 +5,505 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Women in Christ | Refilwe Nyakale</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background-color: #f9f3ee;
-  color: #4a2c2a;
-}
+  :root {
+    --cream: #faf5ef;
+    --warm-brown: #8b4513;
+    --deep-brown: #5a2d0c;
+    --sienna: #a0522d;
+    --chocolate: #d2691e;
+    --gold: #c9953c;
+    --blush: #f2ddd0;
+    --soft-white: #fff9f4;
+    --text: #3e1f0d;
+    --text-light: #7a5a42;
+  }
 
-/* HERO */
-header {
-  background: linear-gradient(rgba(139,69,19,0.8), rgba(210,105,30,0.8)),
-  url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65') center/cover;
-  color: white;
-  text-align: center;
-  padding: 120px 20px;
-}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-header h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 48px;
-  margin: 0;
-}
+  body {
+    font-family: 'Nunito Sans', sans-serif;
+    background-color: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
 
-header p {
-  font-size: 18px;
-}
+  /* ───── HERO ───── */
+  header {
+    position: relative;
+    background: linear-gradient(160deg, rgba(90,45,12,0.88), rgba(139,69,19,0.75), rgba(201,149,60,0.6)),
+      url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=1400') center/cover no-repeat;
+    color: white;
+    text-align: center;
+    padding: 140px 24px 120px;
+    overflow: hidden;
+  }
 
-/* NAV */
-nav {
-  background: #8b4513;
-  text-align: center;
-  padding: 15px;
-}
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: var(--cream);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  margin: 0 20px;
-  font-weight: 600;
-}
+  .hero-tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.4);
+    padding: 6px 18px;
+    border-radius: 30px;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
 
-nav a:hover {
-  color: #ffd8a8;
-}
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 8vw, 72px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
 
-/* SECTIONS */
-section {
-  padding: 60px 20px;
-  max-width: 1000px;
-  margin: auto;
-}
+  header p {
+    font-size: 17px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    opacity: 0.9;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
 
-h2 {
-  font-family: 'Playfair Display', serif;
-  text-align: center;
-  color: #a0522d;
-  margin-bottom: 30px;
-}
+  /* ───── NAV ───── */
+  nav {
+    background: var(--deep-brown);
+    text-align: center;
+    padding: 16px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(90,45,12,0.2);
+  }
 
-/* ABOUT */
-.profile-pic {
-  width: 220px;
-  border-radius: 50%;
-  display: block;
-  margin: 20px auto;
-}
+  nav a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    margin: 0 22px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    position: relative;
+  }
 
-.about-box {
-  background: white;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 8px 25px rgba(139,69,19,0.1);
-  line-height: 1.8;
-}
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gold);
+    transition: width 0.3s;
+  }
 
-/* BLOG */
-.admin-box, .post {
-  background: white;
-  padding: 20px;
-  margin-bottom: 20px;
-  border-radius: 12px;
-  box-shadow: 0 5px 20px rgba(139,69,19,0.08);
-}
+  nav a:hover {
+    color: #fff;
+  }
 
-input, textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-}
+  nav a:hover::after {
+    width: 100%;
+  }
 
-button {
-  background: #d2691e;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-}
+  /* ───── SECTIONS ───── */
+  section {
+    padding: 80px 24px;
+    max-width: 960px;
+    margin: auto;
+  }
 
-button:hover {
-  background: #a0522d;
-}
+  .section-label {
+    display: block;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
 
-/* GALLERY */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
-}
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    text-align: center;
+    color: var(--deep-brown);
+    font-size: clamp(30px, 5vw, 42px);
+    font-weight: 700;
+    margin-bottom: 50px;
+  }
 
-.gallery-grid img {
-  width: 100%;
-  border-radius: 10px;
-}
+  /* ───── ABOUT ───── */
+  .about-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
 
-/* VIDEOS */
-iframe {
-  width: 100%;
-  height: 400px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-}
+  .profile-pic-wrapper {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    flex-shrink: 0;
+  }
 
-/* FOOTER */
-footer {
-  background: #8b4513;
-  color: white;
-  text-align: center;
-  padding: 30px;
-}
+  .profile-pic-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    opacity: 0.5;
+  }
 
-.scripture {
-  background: #ffe4c4;
-  padding: 15px;
-  text-align: center;
-  border-radius: 10px;
-  margin-top: 20px;
-  font-style: italic;
-}
+  .profile-pic {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .about-box {
+    background: var(--soft-white);
+    padding: 40px 36px;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(139,69,19,0.08);
+    line-height: 1.9;
+    font-size: 15px;
+    color: var(--text-light);
+    position: relative;
+  }
+
+  .about-box p {
+    margin-bottom: 16px;
+  }
+
+  .about-box strong {
+    color: var(--deep-brown);
+  }
+
+  .scripture {
+    background: linear-gradient(135deg, var(--blush), #fde8d8);
+    padding: 20px 28px;
+    text-align: center;
+    border-radius: 12px;
+    margin-top: 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--sienna);
+    border-left: 4px solid var(--gold);
+  }
+
+  /* ───── BLOG ───── */
+  #blog {
+    background: var(--blush);
+    max-width: 100%;
+    padding: 80px 24px;
+  }
+
+  #blog > * {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .admin-box {
+    background: var(--soft-white);
+    padding: 28px;
+    margin-bottom: 24px;
+    border-radius: 14px;
+    box-shadow: 0 5px 20px rgba(139,69,19,0.06);
+  }
+
+  .admin-box input,
+  .admin-box textarea {
+    width: 100%;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    border: 1px solid #e0cfc0;
+    border-radius: 8px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+    background: var(--cream);
+    transition: border 0.3s;
+  }
+
+  .admin-box input:focus,
+  .admin-box textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+  }
+
+  .post {
+    background: var(--soft-white);
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    border-radius: 14px;
+    box-shadow: 0 5px 20px rgba(139,69,19,0.06);
+    border-left: 4px solid var(--gold);
+  }
+
+  .post h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--deep-brown);
+    margin-bottom: 10px;
+  }
+
+  .post p {
+    color: var(--text-light);
+    line-height: 1.8;
+    font-size: 14.5px;
+  }
+
+  button {
+    background: var(--chocolate);
+    color: white;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  button:hover {
+    background: var(--sienna);
+    transform: translateY(-1px);
+  }
+
+  /* ───── EVENTS ───── */
+  .event-card {
+    text-align: center;
+  }
+
+  .event-card img {
+    max-width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(139,69,19,0.12);
+  }
+
+  /* ───── VIDEOS ───── */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .video-card {
+    background: var(--soft-white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(139,69,19,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .video-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 50px rgba(139,69,19,0.14);
+  }
+
+  .video-card video {
+    width: 100%;
+    display: block;
+    background: #000;
+  }
+
+  .video-card .video-info {
+    padding: 16px 20px;
+  }
+
+  .video-card .video-info h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--deep-brown);
+    margin-bottom: 4px;
+  }
+
+  .video-card .video-info span {
+    font-size: 12px;
+    color: var(--text-light);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ───── FOOTER ───── */
+  footer {
+    background: var(--deep-brown);
+    color: rgba(255,255,255,0.85);
+    text-align: center;
+    padding: 50px 24px;
+    position: relative;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: var(--cream);
+    clip-path: ellipse(55% 100% at 50% 0%);
+  }
+
+  .footer-mission {
+    max-width: 500px;
+    margin: 0 auto 24px;
+  }
+
+  .footer-mission h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .footer-mission p {
+    font-size: 14px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  footer .copy {
+    font-size: 12px;
+    opacity: 0.5;
+    margin-top: 20px;
+  }
+
+  /* ───── DIVIDER ───── */
+  .divider {
+    width: 50px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0 auto 40px;
+    border: none;
+  }
+
+  /* ───── ANIMATIONS ───── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ───── RESPONSIVE ───── */
+  @media (max-width: 600px) {
+    nav a {
+      margin: 0 12px;
+      font-size: 11px;
+    }
+
+    section {
+      padding: 60px 18px;
+    }
+
+    .about-box {
+      padding: 28px 22px;
+    }
+
+    .video-grid {
+      grid-template-columns: 1fr;
+    }
+
+    header {
+      padding: 100px 20px 90px;
+    }
+  }
 </style>
 </head>
 
 <body>
 
+<!-- ═══════ HERO ═══════ -->
 <header>
+  <div class="hero-tag">Faith · Growth · Purpose</div>
   <h1>Women in Christ</h1>
-  <p>A Sisterhood of Faith, Growth & Purpose</p>
+  <p>A Sisterhood of Faith, Growth &amp; Purpose</p>
 </header>
 
+<!-- ═══════ NAV ═══════ -->
 <nav>
   <a href="#about">About</a>
-  <a href="#blog">Blog</a>
-  <a href="#gallery">Gallery</a>
+  <a href="#blog">Journal</a>
+  <a href="#events">Events</a>
   <a href="#videos">Videos</a>
 </nav>
 
-<!-- ABOUT -->
+<!-- ═══════ ABOUT ═══════ -->
 <section id="about">
+  <span class="section-label">Who She Is</span>
   <h2>Meet Refilwe Nyakale</h2>
-  <img src="images/refilwe.jpg" class="profile-pic">
 
-  <div class="about-box">
-    <p>
-      Refilwe Nyakale is a young woman who has devoted her life to serving God wholeheartedly.
-      Raised in a household of believers, she grew up witnessing faith lived out daily —
-      not as religion, but as relationship.
-    </p>
+  <div class="about-wrapper reveal">
+    <div class="profile-pic-wrapper">
+      <!-- ✅ Correct path: image is in root of repo -->
+      <img src="Fifi Bio - Copy.jpeg" alt="Refilwe Nyakale" class="profile-pic">
+    </div>
 
-    <p>
-      She portrays real life — a life with mistakes, growth and grace.
-      Her message is not perfection, but surrender.
-    </p>
+    <div class="about-box">
+      <p>
+        Refilwe Nyakale is a young woman who has devoted her life to serving God wholeheartedly.
+        Raised in a household of believers, she grew up witnessing faith lived out daily —
+        not as religion, but as relationship.
+      </p>
+      <p>
+        She portrays real life — a life with mistakes, growth and grace.
+        Her message is not perfection, but surrender.
+      </p>
+      <p>
+        <strong>God must always be the center of every relationship.</strong>
+      </p>
 
-    <p>
-      <strong>God must always be the center of every relationship.</strong>
-    </p>
-
-    <div class="scripture">
-      “She is clothed with strength and dignity.” – Proverbs 31:25
+      <div class="scripture">
+        "She is clothed with strength and dignity." — Proverbs 31:25
+      </div>
     </div>
   </div>
 </section>
 
-<!-- BLOG -->
+<!-- ═══════ BLOG / JOURNAL ═══════ -->
 <section id="blog">
+  <span class="section-label">Reflections</span>
   <h2>From The Journal</h2>
 
   <div class="admin-box" id="adminSection" style="display:none;">
@@ -206,29 +515,85 @@ footer {
   <div id="posts"></div>
 </section>
 
-<!-- GALLERY -->
-<section id="gallery">
-  <h2>Women in Christ Memories</h2>
-  <div class="gallery-grid">
-    <img src="images/memory1.jpg">
-    <img src="images/memory2.jpg">
-    <img src="images/memory3.jpg">
+<!-- ═══════ EVENTS ═══════ -->
+<section id="events">
+  <span class="section-label">What's Coming</span>
+  <h2>Upcoming Events</h2>
+
+  <div class="event-card reveal">
+    <!-- ✅ Correct path: image is in root of repo -->
+    <img src="upcoming even.jpeg" alt="Upcoming Women in Christ Event">
   </div>
 </section>
 
-<!-- VIDEOS -->
+<!-- ═══════ VIDEOS ═══════ -->
 <section id="videos">
+  <span class="section-label">Watch</span>
   <h2>The Journey in Motion</h2>
 
-  <!-- Replace with real YouTube embed links -->
-  <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+  <div class="video-grid">
+
+    <div class="video-card reveal">
+      <video controls preload="metadata" poster="">
+        <!-- ✅ Correct path: videos are in root of repo -->
+        <source src="first Woman in christ.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="video-info">
+        <h4>Women in Christ</h4>
+        <span>Episode 1</span>
+      </div>
+    </div>
+
+    <div class="video-card reveal">
+      <video controls preload="metadata">
+        <source src="second womn in christ.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="video-info">
+        <h4>Women in Christ</h4>
+        <span>Episode 2</span>
+      </div>
+    </div>
+
+    <div class="video-card reveal">
+      <video controls preload="metadata">
+        <source src="girl in christ.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="video-info">
+        <h4>Girl in Christ</h4>
+        <span>Ministry</span>
+      </div>
+    </div>
+
+    <div class="video-card reveal">
+      <video controls preload="metadata">
+        <source src="testimonies.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="video-info">
+        <h4>Testimonies</h4>
+        <span>Stories of Faith</span>
+      </div>
+    </div>
+
+  </div>
 </section>
 
+<!-- ═══════ FOOTER ═══════ -->
 <footer>
-  <p><strong>Our Mission</strong></p>
-  <p>To raise women who know God personally and place Him at the center of every relationship.</p>
-  <p>© 2026 Women in Christ | Founded by Refilwe Nyakale</p>
+  <div class="footer-mission">
+    <h3>Our Mission</h3>
+    <p>To raise women who know God personally and place Him at the center of every relationship.</p>
+  </div>
+  <p class="copy">© 2026 Women in Christ · Founded by Refilwe Nyakale</p>
 </footer>
+
+<!-- ═══════ FIREBASE (Blog) ═══════ -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
 <script>
 // 🔥 Replace with your Firebase config
@@ -243,38 +608,53 @@ const db = firebase.firestore();
 const auth = firebase.auth();
 
 auth.onAuthStateChanged(user => {
-  if(user){
+  if (user) {
     document.getElementById("adminSection").style.display = "block";
   }
 });
 
-function addPost(){
+function addPost() {
   const title = document.getElementById("title").value;
   const content = document.getElementById("content").value;
+
+  if (!title || !content) return alert("Please fill in both fields.");
 
   db.collection("posts").add({
     title: title,
     content: content,
     date: new Date()
+  }).then(() => {
+    document.getElementById("title").value = "";
+    document.getElementById("content").value = "";
+    alert("Post Published!");
   });
-
-  alert("Post Published!");
 }
 
-db.collection("posts").orderBy("date","desc")
-.onSnapshot(snapshot=>{
-  const postsDiv = document.getElementById("posts");
-  postsDiv.innerHTML = "";
-  snapshot.forEach(doc=>{
-    const post = doc.data();
-    postsDiv.innerHTML += `
-      <div class="post">
-        <h3>${post.title}</h3>
-        <p>${post.content}</p>
-      </div>
-    `;
+db.collection("posts").orderBy("date", "desc")
+  .onSnapshot(snapshot => {
+    const postsDiv = document.getElementById("posts");
+    postsDiv.innerHTML = "";
+    snapshot.forEach(doc => {
+      const post = doc.data();
+      postsDiv.innerHTML += `
+        <div class="post reveal visible">
+          <h3>${post.title}</h3>
+          <p>${post.content}</p>
+        </div>
+      `;
+    });
   });
-});
+
+// ═══════ SCROLL REVEAL ═══════
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 
 </body>
