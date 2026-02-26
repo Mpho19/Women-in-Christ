@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Made in Christ | Refilwe Nyakale</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #faf5ef;
+    --warm-brown: #8b4513;
+    --deep-brown: #5a2d0c;
+    --sienna: #a0522d;
+    --chocolate: #d2691e;
+    --gold: #c9953c;
+    --blush: #f2ddd0;
+    --soft-white: #fff9f4;
+    --text: #3e1f0d;
+    --text-light: #7a5a42;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito Sans', sans-serif;
+    background-color: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─────────── HERO ─────────── */
+  header {
+    position: relative;
+    background: linear-gradient(160deg, rgba(90,45,12,0.88), rgba(139,69,19,0.75), rgba(201,149,60,0.6)),
+      url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=1400') center/cover no-repeat;
+    color: white;
+    text-align: center;
+    padding: 100px 24px 120px;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: var(--cream);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+
+  .hero-logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255,255,255,0.3);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.1s forwards;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.35);
+    padding: 6px 20px;
+    border-radius: 30px;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.3s forwards;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 8vw, 68px);
+    font-weight: 700;
+    line-height: 1.08;
+    margin-bottom: 14px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s forwards;
+  }
+
+  header p {
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 1.5px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.7s forwards;
+  }
+
+  /* ─────────── NAV ─────────── */
+  nav {
+    background: var(--deep-brown);
+    text-align: center;
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(90,45,12,0.25);
+  }
+
+  nav a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: var(--gold);
+    transition: width 0.3s;
+  }
+
+  nav a:hover { color: #fff; }
+  nav a:hover::after { width: 100%; }
+
+  /* ─────────── SECTIONS ─────────── */
+  section {
+    padding: 80px 24px;
+    max-width: 900px;
+    margin: auto;
+  }
+
+  .section-label {
+    display: block;
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    text-align: center;
+    color: var(--deep-brown);
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+
+  .section-line {
+    width: 40px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0 auto 48px;
+    border: none;
+  }
+
+  /* ─────────── ABOUT ─────────── */
+  .about-layout {
+    display: flex;
+    gap: 44px;
+    align-items: flex-start;
+  }
+
+  .profile-pic-wrapper {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0;
+  }
+
+  .profile-pic-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gold);
+    opacity: 0.4;
+  }
+
+  .profile-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .about-text {
+    flex: 1;
+    line-height: 1.85;
+    font-size: 14.5px;
+    color: var(--text-light);
+  }
+
+  .about-text p { margin-bottom: 14px; }
+  .about-text strong { color: var(--deep-brown); }
+
+  .scripture {
+    background: linear-gradient(135deg, var(--blush), #fde8d8);
+    padding: 18px 24px;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--sienna);
+    border-left: 3px solid var(--gold);
+  }
+
+  /* ─────────── BLOG / JOURNAL ─────────── */
+  .blog-section {
+    background: var(--blush);
+    max-width: 100%;
+    padding: 80px 24px;
+  }
+
+  .blog-section > .section-label,
+  .blog-section > h2,
+  .blog-section > .section-line,
+  .blog-section > .admin-box,
+  .blog-section > #posts,
+  .blog-section > .journal-entry {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .admin-box {
+    background: var(--soft-white);
+    padding: 24px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(139,69,19,0.05);
+  }
+
+  .admin-box input,
+  .admin-box textarea {
+    width: 100%;
+    padding: 11px 14px;
+    margin-bottom: 10px;
+    border: 1px solid #e0cfc0;
+    border-radius: 8px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 13.5px;
+    background: var(--cream);
+    transition: border 0.3s;
+  }
+
+  .admin-box input:focus,
+  .admin-box textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+  }
+
+  .journal-entry {
+    background: var(--soft-white);
+    padding: 36px 34px;
+    border-radius: 14px;
+    box-shadow: 0 6px 24px rgba(139,69,19,0.06);
+    border-left: 4px solid var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .journal-entry h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    color: var(--deep-brown);
+    margin-bottom: 16px;
+  }
+
+  .journal-entry p {
+    color: var(--text-light);
+    line-height: 1.85;
+    font-size: 14.5px;
+    margin-bottom: 12px;
+  }
+
+  .journal-preview {
+    position: relative;
+    max-height: 220px;
+    overflow: hidden;
+    transition: max-height 0.6s ease;
+  }
+
+  .journal-preview.expanded {
+    max-height: 5000px;
+  }
+
+  .journal-preview::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(transparent, var(--soft-white));
+    pointer-events: none;
+    transition: opacity 0.4s;
+  }
+
+  .journal-preview.expanded::after {
+    opacity: 0;
+  }
+
+  .read-more-btn {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 10px 24px;
+    background: none;
+    color: var(--chocolate);
+    border: 1.5px solid var(--chocolate);
+    border-radius: 30px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .read-more-btn:hover {
+    background: var(--chocolate);
+    color: white;
+    transform: translateY(-1px);
+  }
+
+  .post {
+    background: var(--soft-white);
+    padding: 24px 28px;
+    margin-bottom: 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(139,69,19,0.05);
+    border-left: 3px solid var(--gold);
+  }
+
+  .post h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    color: var(--deep-brown);
+    margin-bottom: 8px;
+  }
+
+  .post p {
+    color: var(--text-light);
+    line-height: 1.75;
+    font-size: 14px;
+  }
+
+  button {
+    background: var(--chocolate);
+    color: white;
+    padding: 11px 26px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  button:hover {
+    background: var(--sienna);
+    transform: translateY(-1px);
+  }
+
+  /* ─────────── EVENTS ─────────── */
+  .event-card {
+    text-align: center;
+  }
+
+  .event-thumb {
+    width: 280px;
+    max-width: 100%;
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(139,69,19,0.1);
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .event-thumb:hover {
+    transform: scale(1.03);
+    box-shadow: 0 14px 45px rgba(139,69,19,0.18);
+  }
+
+  .event-hint {
+    margin-top: 12px;
+    font-size: 12px;
+    color: var(--text-light);
+    letter-spacing: 1px;
+  }
+
+  .rsvp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 14px 32px;
+    background: #25D366;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 4px 18px rgba(37,211,102,0.3);
+  }
+
+  .rsvp-btn:hover {
+    background: #1da851;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(37,211,102,0.4);
+  }
+
+  /* ─────────── IMAGE LIGHTBOX ─────────── */
+  .lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(20,10,2,0.92);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  .lightbox-overlay.active {
+    display: flex;
+    animation: fadeIn 0.25s ease;
+  }
+
+  .lightbox-overlay img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 12px;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.5);
+    animation: scaleIn 0.3s ease;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 24px;
+    right: 28px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+    padding: 0;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .lightbox-close:hover {
+    background: rgba(255,255,255,0.25);
+    transform: none;
+  }
+
+  /* ─────────── VIDEOS ─────────── */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .video-card {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #1a0e04;
+    box-shadow: 0 6px 24px rgba(139,69,19,0.1);
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    aspect-ratio: 16 / 9;
+  }
+
+  .video-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(139,69,19,0.18);
+  }
+
+  .video-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+  }
+
+  .video-card .play-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(transparent 30%, rgba(20,10,2,0.7));
+    transition: background 0.3s;
+  }
+
+  .video-card:hover .play-overlay {
+    background: linear-gradient(transparent 20%, rgba(20,10,2,0.8));
+  }
+
+  .play-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+    margin-bottom: 12px;
+  }
+
+  .video-card:hover .play-btn {
+    transform: scale(1.08);
+  }
+
+  .play-btn svg {
+    width: 22px;
+    height: 22px;
+    margin-left: 3px;
+    fill: var(--deep-brown);
+  }
+
+  .video-label h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    color: white;
+    margin-bottom: 2px;
+  }
+
+  .video-label span {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+
+  /* ─────────── VIDEO FULLSCREEN MODAL ─────────── */
+  .video-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.96);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .video-modal.active {
+    display: flex;
+    animation: fadeIn 0.25s ease;
+  }
+
+  .video-modal video {
+    max-width: 92vw;
+    max-height: 82vh;
+    border-radius: 10px;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.6);
+    animation: scaleIn 0.3s ease;
+  }
+
+  .video-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+    padding: 0;
+    letter-spacing: 0;
+    text-transform: none;
+    z-index: 10;
+  }
+
+  .video-modal-close:hover {
+    background: rgba(255,255,255,0.22);
+    transform: none;
+  }
+
+  .video-modal-title {
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 16px;
+  }
+
+  /* ─────────── FOOTER ─────────── */
+  footer {
+    background: var(--deep-brown);
+    color: rgba(255,255,255,0.8);
+    text-align: center;
+    padding: 60px 24px 40px;
+    position: relative;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: var(--cream);
+    clip-path: ellipse(55% 100% at 50% 0%);
+  }
+
+  .footer-inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 6px;
+  }
+
+  .footer-tagline {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+  }
+
+  .footer-divider {
+    width: 30px;
+    height: 1px;
+    background: rgba(255,255,255,0.2);
+    margin: 0 auto 24px;
+    border: none;
+  }
+
+  .footer-mission {
+    font-size: 14px;
+    line-height: 1.75;
+    font-weight: 300;
+    margin-bottom: 32px;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .footer-verse {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--gold);
+    opacity: 0.8;
+    margin-bottom: 32px;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .footer-bottom a {
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    margin-left: 16px;
+    transition: color 0.3s;
+  }
+
+  .footer-bottom a:hover {
+    color: var(--gold);
+  }
+
+  /* ─────────── ANIMATIONS ─────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─────────── RESPONSIVE ─────────── */
+  @media (max-width: 700px) {
+    nav a { margin: 0 12px; font-size: 10px; letter-spacing: 2px; }
+
+    .about-layout {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .scripture { border-left: none; border-top: 3px solid var(--gold); }
+
+    .video-grid { grid-template-columns: 1fr; }
+
+    section { padding: 60px 18px; }
+    header { padding: 80px 20px 90px; }
+
+    .hero-logo { width: 90px; height: 90px; }
+
+    .footer-bottom {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .journal-entry { padding: 28px 22px; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ═══ HERO ═══ -->
+<header>
+  <img src="logo.jpeg" alt="Made in Christ Logo" class="hero-logo">
+  <div class="hero-tag">Intimacy · Faith · Obedience</div>
+  <h1>Made in Christ</h1>
+  <p>Built by Faith. Shaped by Grace. Made in Christ.</p>
+</header>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <a href="#about">About</a>
+  <a href="#blog">Journal</a>
+  <a href="#events">Events</a>
+  <a href="#videos">Videos</a>
+</nav>
+
+<!-- ═══ ABOUT ═══ -->
+<section id="about">
+  <span class="section-label">Who She Is</span>
+  <h2>Meet Refilwe Nyakale</h2>
+  <hr class="section-line">
+
+  <div class="about-layout reveal">
+    <div class="profile-pic-wrapper">
+      <img src="main picture fifi.jfif" alt="Refilwe Nyakale" class="profile-pic">
+    </div>
+
+    <div class="about-text">
+      <p>
+        Refilwe Nyakale is a young woman who has devoted her life to serving God wholeheartedly.
+        Raised in a household of believers, she grew up witnessing faith lived out daily.
+        not as religion, but as relationship.
+      </p>
+      <p>
+        She portrays real life. a life with mistakes, growth and grace.
+        Her message is not perfection, but surrender.
+      </p>
+      <p><strong>God must always be the center of every relationship.</strong></p>
+
+      <div class="scripture">
+        "She is clothed with strength and dignity." Proverbs 31:25
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ JOURNAL ═══ -->
+<section id="blog" class="blog-section">
+  <span class="section-label">Reflections</span>
+  <h2>From The Journal</h2>
+  <hr class="section-line">
+
+  <!-- Featured Journal Entry -->
+  <div class="journal-entry reveal">
+    <h3>Made in Christ: A Journal Reflection</h3>
+
+    <div class="journal-preview" id="journalPreview">
+      <p>
+        There was a season in my life when I stepped away from student ministry where I had served for eight years. For so long, ministry to young people had been part of who I was. But in that stepping away, I sensed God wasn't removing me from serving. He was reshaping the assignment.
+      </p>
+      <p>
+        I began to feel a deep call in my heart to create a space for young people like myself. those who have served from a young age, who love God, who have poured out, led, carried responsibility, and yet still long for a place to simply <em>be</em>. A place not built on performance, position, or pressure. but on identity.
+      </p>
+      <p>
+        <strong>That's where Made in Christ was born.</strong>
+      </p>
+      <p>
+        Made in Christ exists because there was a void. A void for young believers who have grown up serving, leading, and doing, but who needed space to gather, share life honestly, and rediscover what it truly means to be formed, shaped, and defined by Jesus.
+      </p>
+      <p>
+        This movement is about one central question: <strong>What does it really mean to be "Made in Christ"?</strong>
+      </p>
+      <p>
+        To be Made in Christ is not just about attending church. It's not about titles, roles, or routine. It's about knowing God on a personal and intimate level. It's about relationship over religion. hearing His voice, trusting His heart, and walking with Him daily. It means we don't just know <em>about</em> Him. we <em>know</em> Him.
+      </p>
+      <p>
+        And from that intimacy comes transformation.
+      </p>
+      <p>
+        To be Made in Christ is allowing Him to shape our character, renew our minds, and anchor our hearts. It's becoming more like Him in how we think, respond, and live. even when no one is watching.
+      </p>
+      <p>
+        It's not about perfection. It's about surrender. It's about being continually formed into who He created us to be.
+      </p>
+      <p>
+        Four times a year, we gather intentionally. Each gathering centres around a book of the Bible. We read it. We reflect on it. We wrestle with it. We discuss it openly and honestly. There is no rush. No pressure to impress. Just a chilled, safe environment where young people can experience God deeply and encounter Him intimately for who He truly is.
+      </p>
+      <p>
+        In these spaces, stories are shared. Questions are welcomed. Faith is strengthened. Identity is clarified.
+      </p>
+      <p>
+        Made in Christ is not about building a crowd. it's about building people. It's about young believers discovering that before they are leaders, servants, creatives, or professionals. they are sons and daughters of Jesus.
+      </p>
+      <p>
+        This ministry is a reminder that we are not self-made. We are not defined by our past. We are not limited by our mistakes.
+      </p>
+      <p>
+        <strong>We are Made in Christ.</strong><br>
+        And together, we are learning what that truly means.
+      </p>
+    </div>
+
+    <button class="read-more-btn" id="readMoreBtn" onclick="toggleJournal()">Read More</button>
+  </div>
+
+  <!-- Admin & Dynamic Posts -->
+  <div class="admin-box" id="adminSection" style="display:none;">
+    <input type="text" id="title" placeholder="Post Title">
+    <textarea id="content" rows="5" placeholder="Write your message..."></textarea>
+    <button onclick="addPost()">Publish</button>
+  </div>
+
+  <div id="posts"></div>
+</section>
+
+<!-- ═══ EVENTS ═══ -->
+<section id="events">
+  <span class="section-label">What's Coming</span>
+  <h2>Upcoming Events</h2>
+  <hr class="section-line">
+
+  <div class="event-card reveal">
+    <img
+      src="upcoming picture.jfif"
+      alt="Upcoming Made in Christ Event"
+      class="event-thumb"
+      onclick="openLightbox(this.src, this.alt)"
+    >
+    <p class="event-hint">Tap image to view full size</p>
+    <a href="https://wa.me/27810392348?text=Hi%20Refilwe%2C%20I%20would%20like%20to%20RSVP%20for%20the%20upcoming%20Made%20in%20Christ%20event%20%F0%9F%99%8F" target="_blank" class="rsvp-btn">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.387 0-4.592-.838-6.313-2.236l-.44-.367-3.232 1.084 1.084-3.232-.367-.44A9.958 9.958 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+      RSVP via WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- ═══ VIDEOS ═══ -->
+<section id="videos">
+  <span class="section-label">Watch</span>
+  <h2>The Journey in Motion</h2>
+  <hr class="section-line">
+
+  <div class="video-grid">
+
+    <div class="video-card reveal" onclick="openVideo('first Woman in christ.mp4', 'Made in Christ: Episode 1')">
+      <video preload="metadata" muted>
+        <source src="first Woman in christ.mp4" type="video/mp4">
+      </video>
+      <div class="play-overlay">
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+        </div>
+        <div class="video-label">
+          <h4>Made in Christ</h4>
+          <span>Episode 1</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card reveal" onclick="openVideo('second womn in christ.mp4', 'Made in Christ: Episode 2')">
+      <video preload="metadata" muted>
+        <source src="second womn in christ.mp4" type="video/mp4">
+      </video>
+      <div class="play-overlay">
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+        </div>
+        <div class="video-label">
+          <h4>Made in Christ</h4>
+          <span>Episode 2</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card reveal" onclick="openVideo('girl in christ.mp4', 'Girl in Christ')">
+      <video preload="metadata" muted>
+        <source src="girl in christ.mp4" type="video/mp4">
+      </video>
+      <div class="play-overlay">
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+        </div>
+        <div class="video-label">
+          <h4>Girl in Christ</h4>
+          <span>Ministry</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-card reveal" onclick="openVideo('testimonies.mp4', 'Testimonies')">
+      <video preload="metadata" muted>
+        <source src="testimonies.mp4" type="video/mp4">
+      </video>
+      <div class="play-overlay">
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
+        </div>
+        <div class="video-label">
+          <h4>Testimonies</h4>
+          <span>Stories of Faith</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Made in Christ</div>
+    <div class="footer-tagline">Founded by Refilwe Nyakale</div>
+    <hr class="footer-divider">
+    <p class="footer-mission">
+      To raise young people who know God personally and place Him at the center of every relationship.
+    </p>
+    <p class="footer-verse">"For where two or three gather in my name, there am I with them." Matthew 18:20</p>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Made in Christ</span>
+      <div>
+        <a href="#about">About</a>
+        <a href="#blog">Journal</a>
+        <a href="#videos">Videos</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ IMAGE LIGHTBOX ═══ -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">&#10005;</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<!-- ═══ VIDEO MODAL ═══ -->
+<div class="video-modal" id="videoModal">
+  <button class="video-modal-close" onclick="closeVideo()">&#10005;</button>
+  <video id="modalVideo" controls autoplay>
+    <source id="modalVideoSrc" src="" type="video/mp4">
+  </video>
+  <p class="video-modal-title" id="modalVideoTitle"></p>
+</div>
+
+<!-- ═══ FIREBASE ═══ -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+<script>
+// Replace with your Firebase config
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_DOMAIN",
+  projectId: "YOUR_PROJECT_ID",
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const auth = firebase.auth();
+
+auth.onAuthStateChanged(user => {
+  if (user) document.getElementById("adminSection").style.display = "block";
+});
+
+function addPost() {
+  const title = document.getElementById("title").value;
+  const content = document.getElementById("content").value;
+  if (!title || !content) return alert("Please fill in both fields.");
+
+  db.collection("posts").add({
+    title, content, date: new Date()
+  }).then(() => {
+    document.getElementById("title").value = "";
+    document.getElementById("content").value = "";
+    alert("Post Published!");
+  });
+}
+
+db.collection("posts").orderBy("date", "desc")
+  .onSnapshot(snapshot => {
+    const postsDiv = document.getElementById("posts");
+    postsDiv.innerHTML = "";
+    snapshot.forEach(doc => {
+      const post = doc.data();
+      postsDiv.innerHTML += `
+        <div class="post">
+          <h3>${post.title}</h3>
+          <p>${post.content}</p>
+        </div>`;
+    });
+  });
+
+/* ────── JOURNAL READ MORE ────── */
+function toggleJournal() {
+  const preview = document.getElementById("journalPreview");
+  const btn = document.getElementById("readMoreBtn");
+
+  preview.classList.toggle("expanded");
+
+  if (preview.classList.contains("expanded")) {
+    btn.textContent = "Read Less";
+  } else {
+    btn.textContent = "Read More";
+    preview.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+/* ────── IMAGE LIGHTBOX ────── */
+function openLightbox(src, alt) {
+  document.getElementById("lightboxImg").src = src;
+  document.getElementById("lightboxImg").alt = alt;
+  document.getElementById("lightbox").classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").classList.remove("active");
+  document.body.style.overflow = "";
+}
+
+/* ────── VIDEO MODAL ────── */
+function openVideo(src, title) {
+  const modal = document.getElementById("videoModal");
+  const video = document.getElementById("modalVideo");
+  const source = document.getElementById("modalVideoSrc");
+
+  source.src = src;
+  document.getElementById("modalVideoTitle").textContent = title;
+  video.load();
+  modal.classList.add("active");
+  document.body.style.overflow = "hidden";
+
+  video.play().catch(() => {});
+
+  if (video.requestFullscreen) {
+    video.requestFullscreen().catch(() => {});
+  } else if (video.webkitEnterFullscreen) {
+    video.webkitEnterFullscreen();
+  }
+}
+
+function closeVideo() {
+  const modal = document.getElementById("videoModal");
+  const video = document.getElementById("modalVideo");
+
+  video.pause();
+  video.currentTime = 0;
+  modal.classList.remove("active");
+  document.body.style.overflow = "";
+
+  if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
+}
+
+document.addEventListener("fullscreenchange", () => {
+  if (!document.fullscreenElement) {
+    const modal = document.getElementById("videoModal");
+    if (modal.classList.contains("active")) closeVideo();
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    closeLightbox();
+    closeVideo();
+  }
+});
+
+document.getElementById("videoModal").addEventListener("click", (e) => {
+  if (e.target === document.getElementById("videoModal")) closeVideo();
+});
+
+/* ────── SCROLL REVEAL ────── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
